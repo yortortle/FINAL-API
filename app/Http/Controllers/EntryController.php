@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Entry;
+use App\Http\Resources\Entry as EntryResource;
+
 
 class EntryController extends Controller
 {
@@ -13,7 +17,11 @@ class EntryController extends Controller
      */
     public function index()
     {
-        //
+        // Get Entries
+        $entries = Entry::paginate(15);
+
+        // Return Collection of entries as a resource
+        return EntryResource::collection($entries);
     }
 
     /**
