@@ -22,13 +22,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('entries', 'EntryController@index');
 
 // list Single Entry
-Route::get('entry{id}', 'EntryController@show');
+Route::get('entry/{id}', 'EntryController@show');
 
 // Create Entry
 Route::post('entry', 'EntryController@store');
 
 // Update Article
-Route::put('entries', 'EntryController@index');
+Route::put('entry/{id}', 'EntryController@store');
 
 // Delete Article
-Route::delete('entries', 'EntryController@destroy');
+Route::delete('entry/{id}', 'EntryController@destroy');
