@@ -42,7 +42,19 @@ class EntryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $entry = $request->isMethod('put') ? Entry::findOrFail($request->entry_id) : new Entry;
+
+        // $entry->id = $request->input('entry_id');
+        $entry->title = $request->input('title');
+        $entry->subject = $request->input('subject');
+        $entry->description = $request->input('description');
+        $entry->URL = $request->input('URL');
+        $entry->cost = $request->input('cost');
+
+        if ($entry->save()) {
+          return new EntryResource($entry);
+        }
+
     }
 
     /**
@@ -53,7 +65,11 @@ class EntryController extends Controller
      */
     public function show($id)
     {
-        //
+        //show individual entry
+        $entry = Entry::findOrFail($id);
+
+        //Return single Entry as resource
+        return new EntryResource($entry);
     }
 
     /**
@@ -87,6 +103,11 @@ class EntryController extends Controller
      */
     public function destroy($id)
     {
-        //
+      //destroy individual entry
+      $entry = Entry::findOrFail($id);
+
+      if($entry->delete()) {
+        return new EntryResource($entry);
+      }
     }
 }

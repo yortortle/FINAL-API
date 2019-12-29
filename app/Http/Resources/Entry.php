@@ -21,4 +21,8 @@ class Entry extends JsonResource
         //   'title' => $this->title,
         // ]
     }
+
+    // public function with($request) {
+    //
+    // }
 }
