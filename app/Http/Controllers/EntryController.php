@@ -42,7 +42,11 @@ class EntryController extends Controller
      */
     public function store(Request $request)
     {
-        $entry = $request->isMethod('put') ? Entry::findOrFail($request->entry_id) : new Entry;
+        // $entry = Entry::findOrFail($id);
+
+        // $entry = $request->isMethod('put') ? Entry::findOrFail($request->entry_id) : new Entry;
+
+        $entry = $request->isMethod('put') ? Entry::findOrFail($request->id) : new Entry;
 
         // $entry->id = $request->input('entry_id');
         $entry->title = $request->input('title');
